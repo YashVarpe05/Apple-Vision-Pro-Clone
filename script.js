@@ -85,7 +85,7 @@ let tl = gsap.timeline({
 });
 
 tl.to("#page1>h1", {
-	top: `-90%`,
+	top: `-60%`,
 });
 
 let tl1 = gsap.timeline({
@@ -100,7 +100,7 @@ let tl1 = gsap.timeline({
 });
 
 tl1.to("#page2>h1", {
-	top: `-90%`,
+	top: `-60%`,
 });
 
 let tl2 = gsap.timeline({
@@ -115,7 +115,7 @@ let tl2 = gsap.timeline({
 });
 
 tl2.to("#page3>h1", {
-	top: `-90%`,
+	top: `-60%`,
 });
 
 let tl3 = gsap.timeline({
@@ -130,5 +130,78 @@ let tl3 = gsap.timeline({
 });
 
 tl3.to("#page4>h1", {
-	top: `-90%`,
+	top: `-60%`,
+});
+
+let tl4 = gsap.timeline({
+	scrollTrigger: {
+		trigger: `#page6`,
+		start: `top top`,
+		scrub: 1,
+		scroller: `#main`,
+		// markers: true,
+		pin: true,
+	},
+});
+
+tl4.to("#page6>#center-page-6", {
+	top: `-60%`,
+});
+
+let tl5 = gsap.timeline({
+	scrollTrigger: {
+		trigger: `#page8`,
+		start: `top top`,
+		scrub: 1,
+		scroller: `#main`,
+		// markers: true,
+		pin: true,
+	},
+});
+
+tl5.to("#page8>#center-page-6", {
+	top: `-60%`,
+});
+
+let tl6 = gsap.timeline({
+	scrollTrigger: {
+		trigger: `#page10`,
+		start: `top top`,
+		scrub: 1,
+		scroller: `#main`,
+		// markers: true,
+		pin: true,
+	},
+});
+
+tl6.to("#page10>#center-page-6", {
+	top: `-60%`,
+});
+
+let tl7 = gsap.timeline({
+	scrollTrigger: {
+		trigger: `#page12`,
+		start: `top top`,
+		scrub: 1,
+		scroller: `#main`,
+		// markers: true,
+		pin: true,
+	},
+});
+
+tl7.to("#page12>#center-page-6", {
+	top: `-60%`,
+});
+const fadeSections = document.querySelectorAll(".fade-in");
+fadeSections.forEach((section) => {
+	const fadeInTrigger = ScrollTrigger.create({
+		trigger: section,
+		start: "top 80%", // Adjust the start position as per your preference
+		end: "bottom 20%", // Adjust the end position as per your preference
+		scroller: "#main",
+		onEnter: () => section.classList.add("active"),
+		onLeaveBack: () => section.classList.remove("active"),
+	});
+
+	ScrollTrigger.refresh();
 });
