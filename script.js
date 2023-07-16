@@ -38,3 +38,97 @@ function loco() {
 	ScrollTrigger.refresh();
 }
 loco();
+
+// video on scroll animation
+gsap.to("#page>video", {
+	scrollTrigger: {
+		trigger: `#page`,
+		start: `2% top`,
+		end: `bottom top`,
+		// markers: true,
+		scroller: `#main`,
+	},
+	onStart: () => {
+		document.querySelector("#page>video").play();
+	},
+});
+
+gsap.to("#page", {
+	scrollTrigger: {
+		trigger: `#page`,
+		start: `top top`,
+		end: `bottom top`,
+		scroller: `#main`,
+		pin: true,
+	},
+});
+
+gsap.to("#page-bottom", {
+	scrollTrigger: {
+		trigger: `#page-bottom`,
+		start: `3% top`,
+		end: `bottom top`,
+		scroller: `#main`,
+	},
+	opacity: 0,
+});
+
+let tl = gsap.timeline({
+	scrollTrigger: {
+		trigger: `#page1`,
+		start: `top top`,
+		scrub: 1,
+		scroller: `#main`,
+		// markers: true,
+		pin: true,
+	},
+});
+
+tl.to("#page1>h1", {
+	top: `-90%`,
+});
+
+let tl1 = gsap.timeline({
+	scrollTrigger: {
+		trigger: `#page2`,
+		start: `top top`,
+		scrub: 1,
+		scroller: `#main`,
+		// markers: true,
+		pin: true,
+	},
+});
+
+tl1.to("#page2>h1", {
+	top: `-90%`,
+});
+
+let tl2 = gsap.timeline({
+	scrollTrigger: {
+		trigger: `#page3`,
+		start: `top top`,
+		scrub: 1,
+		scroller: `#main`,
+		// markers: true,
+		pin: true,
+	},
+});
+
+tl2.to("#page3>h1", {
+	top: `-90%`,
+});
+
+let tl3 = gsap.timeline({
+	scrollTrigger: {
+		trigger: `#page4`,
+		start: `top top`,
+		scrub: 1,
+		scroller: `#main`,
+		// markers: true,
+		pin: true,
+	},
+});
+
+tl3.to("#page4>h1", {
+	top: `-90%`,
+});

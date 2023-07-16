@@ -2,12 +2,21 @@
 	margin: 0%;
 	padding: 0%;
 	box-sizing: border-box;
+
+	font-family: "SF Pro Display", sans-serif;
+
+	/* font-family: ("../Fonts/SFPRODISPLAYREGULAR.OTF"); */
 }
 html,
 body {
 	height: 100%;
 	width: 100%;
 }
+@font-face {
+	font-family: "SF Pro Display";
+	src: url("../Fonts/SFPRODISPLAYREGULAR.OTF");
+}
+
 #main {
 	position: relative;
 	overflow: hidden;
@@ -18,9 +27,113 @@ body {
 	width: 100vw;
 	background-color: #000;
 }
+#page > nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 20px;
+	height: 7vh;
+	width: 50vw;
+	background-color: #000;
+	position: absolute;
+	top: 0%;
+	left: 50%;
+	color: #fff;
+	transform: translateX(-50%);
+}
+#page > nav > button {
+	padding: 7px 20px;
+	border-radius: 50px;
+	border: none;
+	background-color: #fff;
+}
+#page > nav > h3 {
+	font-weight: 400;
+}
+#page > video {
+	height: 100%;
+	width: 50%;
+	top: 5%;
+	object-fit: cover;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+#page-bottom {
+	height: 20%;
+	width: 25%;
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+#page-bottom > h3 {
+	color: #dadada93;
+	margin-bottom: 1vw;
+}
+#page-bottom > img {
+	width: 100%;
+}
+
 #page1 {
 	position: relative;
 	height: 100vh;
 	width: 100vw;
-	background-color: #ffffff;
+	background-color: #fff;
+}
+#page1 > video {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+#page1 > h1 {
+	font-size: 4vw;
+	color: #fff;
+	font-weight: 400;
+	position: absolute;
+	bottom: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+}
+#page2,
+#page3,
+#page4 {
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+}
+#page2 > video,
+#page3 > video,
+#page4 > video {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+#page2 > h1,
+#page3 > h1 {
+	font-size: 4vw;
+	color: #fff;
+	font-weight: 600;
+	position: absolute;
+	bottom: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+	text-align: center;
+}
+#page4 > h1 {
+	font-size: 4vw;
+	color: #fff;
+	font-weight: 600;
+	position: absolute;
+	bottom: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+	text-align: center;
 }
