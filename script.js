@@ -192,6 +192,37 @@ let tl7 = gsap.timeline({
 tl7.to("#page12>#center-page-6", {
 	top: `-60%`,
 });
+
+let tl8 = gsap.timeline({
+	scrollTrigger: {
+		trigger: `#page25`,
+		start: `top top`,
+		scrub: 1,
+		scroller: `#main`,
+		// markers: true,
+		pin: true,
+	},
+});
+
+tl8.to("#page25>#center-page-6", {
+	top: `-60%`,
+});
+
+// let tl9 = gsap.timeline({
+// 	scrollTrigger: {
+// 		trigger: `#page32`,
+// 		start: `top top`,
+// 		scrub: 1,
+// 		scroller: `#main`,
+// 		// markers: true,
+// 		pin: true,
+// 	},
+// });
+
+// tl9.to("#page32>#upper-page18", {
+// 	top: `-60%`,
+// });
+
 const fadeSections = document.querySelectorAll(".fade-in");
 fadeSections.forEach((section) => {
 	const fadeInTrigger = ScrollTrigger.create({
@@ -490,3 +521,205 @@ function canvas() {
 }
 
 canvas();
+// slider
+document.addEventListener("DOMContentLoaded", function () {
+	const sliderContainer = document.querySelector(".slider-container");
+	const slides = document.querySelectorAll(".slider-slide");
+	const prevButton = document.querySelector(".slider-control-prev");
+	const nextButton = document.querySelector(".slider-control-next");
+	const pagination = document.querySelector(".slider-pagination");
+
+	let slideIndex = 0;
+
+	// Show the first slide
+	slides[slideIndex].classList.add("active");
+
+	// Create pagination dots
+	for (let i = 0; i < slides.length; i++) {
+		const dot = document.createElement("span");
+		dot.classList.add("slider-pagination-dot");
+		if (i === slideIndex) {
+			dot.classList.add("active");
+		}
+		dot.addEventListener("click", function () {
+			goToSlide(i);
+		});
+		pagination.appendChild(dot);
+	}
+
+	// Function to move to a specific slide
+	function goToSlide(index) {
+		slides[slideIndex].classList.remove("active");
+		slideIndex = index;
+		slides[slideIndex].classList.add("active");
+		sliderContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+
+		// Update pagination dots
+		const dots = document.querySelectorAll(".slider-pagination-dot");
+		dots.forEach((dot) => dot.classList.remove("active"));
+		dots[slideIndex].classList.add("active");
+	}
+
+	// Function to move to the next slide
+	function nextSlide() {
+		goToSlide((slideIndex + 1) % slides.length);
+	}
+
+	// Function to move to the previous slide
+	function prevSlide() {
+		goToSlide((slideIndex - 1 + slides.length) % slides.length);
+	}
+
+	// Event listeners for the next and previous buttons
+	nextButton.addEventListener("click", nextSlide);
+	prevButton.addEventListener("click", prevSlide);
+});
+
+function canvas1() {
+	const canvas = document.querySelector("#page32>canvas");
+	const context = canvas.getContext("2d");
+
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
+	window.addEventListener("resize", function () {
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+		render();
+	});
+
+	function files(index) {
+		var data = `
+../Apple-Vision-Pro-Clone/images/Vision00001.png
+../Apple-Vision-Pro-Clone/images/Vision00002.png
+../Apple-Vision-Pro-Clone/images/Vision00003.png
+../Apple-Vision-Pro-Clone/images/Vision00004.png
+../Apple-Vision-Pro-Clone/images/Vision00005.png
+../Apple-Vision-Pro-Clone/images/Vision00006.png
+../Apple-Vision-Pro-Clone/images/Vision00007.png
+../Apple-Vision-Pro-Clone/images/Vision00008.png
+../Apple-Vision-Pro-Clone/images/Vision00009.png
+../Apple-Vision-Pro-Clone/images/Vision00010.png
+../Apple-Vision-Pro-Clone/images/Vision00011.png
+../Apple-Vision-Pro-Clone/images/Vision00012.png
+../Apple-Vision-Pro-Clone/images/Vision00013.png
+../Apple-Vision-Pro-Clone/images/Vision00014.png
+../Apple-Vision-Pro-Clone/images/Vision00015.png
+../Apple-Vision-Pro-Clone/images/Vision00016.png
+../Apple-Vision-Pro-Clone/images/Vision00017.png
+../Apple-Vision-Pro-Clone/images/Vision00018.png
+../Apple-Vision-Pro-Clone/images/Vision00019.png
+../Apple-Vision-Pro-Clone/images/Vision00020.png
+../Apple-Vision-Pro-Clone/images/Vision00021.png
+../Apple-Vision-Pro-Clone/images/Vision00022.png
+../Apple-Vision-Pro-Clone/images/Vision00023.png
+../Apple-Vision-Pro-Clone/images/Vision00024.png
+../Apple-Vision-Pro-Clone/images/Vision00025.png
+`;
+		return data.split("\n")[index];
+	}
+
+	const frameCount = 25;
+
+	const images = [];
+	const imageSeq = {
+		frame: 1,
+	};
+
+	for (let i = 0; i < frameCount; i++) {
+		const img = new Image();
+		img.src = files(i);
+		images.push(img);
+	}
+
+	gsap.to(imageSeq, {
+		frame: frameCount - 1,
+		snap: "frame",
+		ease: `none`,
+		scrollTrigger: {
+			scrub: 0.15,
+			trigger: `#page32`,
+			//   set start end according to preference
+			start: `top top`,
+			end: `80% top`,
+			scroller: `#main`,
+		},
+		onUpdate: render,
+	});
+
+	images[1].onload = render;
+
+	function render() {
+		scaleImage(images[imageSeq.frame], context);
+	}
+
+	function scaleImage(img, ctx) {
+		var canvas = ctx.canvas;
+		var hRatio = canvas.width / img.width;
+		var vRatio = canvas.height / img.height;
+		var ratio = Math.max(hRatio, vRatio);
+		var centerShift_x = (canvas.width - img.width * ratio) / 2;
+		var centerShift_y = (canvas.height - img.height * ratio) / 2;
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.drawImage(
+			img,
+			0,
+			0,
+			img.width,
+			img.height,
+			centerShift_x,
+			centerShift_y,
+			img.width * ratio,
+			img.height * ratio
+		);
+	}
+	ScrollTrigger.create({
+		trigger: "#page32",
+		pin: true,
+		// markers:true,
+		scroller: `#main`,
+		//   set start end according to preference
+		start: `top top`,
+		end: `80% top`,
+	});
+}
+canvas1();
+
+var tl9 = gsap.timeline({
+	scrollTrigger: {
+		trigger: `#page35`,
+		start: `top top`,
+		scrub: 1,
+		scroller: `#main`,
+		pin: true,
+	},
+});
+
+tl9.to("#page35>#troff", {
+	opacity: 0,
+});
+
+var tl10 = gsap.timeline({
+	scrollTrigger: {
+		trigger: `#page36`,
+		start: `top top`,
+		scrub: 1,
+		scroller: `#main`,
+		pin: true,
+	},
+});
+
+tl10.to("#page36>#snroff", {
+	opacity: 0,
+});
+
+gsap.to("#page37>img", {
+	scrollTrigger: {
+		trigger: `#page37>img`,
+		start: `top bottom`,
+		end: `bottom 60%`,
+		scrub: 0.5,
+		scroller: `#main`,
+	},
+	opacity: 1,
+});
